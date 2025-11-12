@@ -1,15 +1,15 @@
 const { getInContactEmail } = require('../utils/sendEmail')
 
-module.exports.SendMessageService = (message) => {
+module.exports.SendMessageService = async (message) => {
     try {
-        const UserMessageData = new UserMessage({
+        const UserMessageData = {
             name: message.name,
             email: message.email,
             phoneNumber: message.phoneNumber,
             message: message.message,
             dateCreated: new Date()
-        })
-        getInContactEmail(UserMessageData)
+        };
+        await getInContactEmail(UserMessageData)
     } catch (error) {
         throw error
     }

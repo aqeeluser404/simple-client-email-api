@@ -1,6 +1,6 @@
 const createMailTransporter = require('./createMailTransporter');
 
-const getInContactEmail = (message) => {
+const getInContactEmail = async (message) => {
   const transporter = createMailTransporter();
 
   const mailOptions = {
@@ -27,13 +27,13 @@ const getInContactEmail = (message) => {
     `
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error('Email sending failed:', error.message);
-    } else {
-      console.log('Email sent successfully:', info.response);
-    }
-  });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.response);
+  } catch (error) {
+    console.error('Email sending failed:', error.message);
+    throw error;
+  }
 };
 
 module.exports = { getInContactEmail };
