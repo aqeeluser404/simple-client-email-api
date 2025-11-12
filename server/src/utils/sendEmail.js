@@ -1,6 +1,8 @@
 const createMailTransporter = require('./createMailTransporter');
 
 const getInContactEmail = async (message) => {
+    console.log('Inside getInContactEmail. Message:', message);
+
   const transporter = createMailTransporter();
 
   const mailOptions = {
@@ -26,6 +28,9 @@ const getInContactEmail = async (message) => {
       </p>
     `
   };
+
+  console.log('Sending email with options:', mailOptions);
+
 
   try {
     const info = await transporter.sendMail(mailOptions);

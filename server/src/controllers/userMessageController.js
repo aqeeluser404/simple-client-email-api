@@ -6,6 +6,7 @@ module.exports.SendMessageController = async (req, res) => {
         await userMessageService.SendMessageService(req.body)
         res.status(201).json({ message: 'Email sent successfully!' })
     } catch (error) {
-        res.status(400).json({ error: error.message })
+        console.error('SendMessageController error:', error);
+        res.status(400).json({ error: error.message });
     }
 }
