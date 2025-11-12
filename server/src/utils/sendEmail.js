@@ -5,6 +5,14 @@ const getInContactEmail = async (message) => {
 
   const transporter = createMailTransporter();
 
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error('SMTP Connection Failed:', error);
+    } else {
+      console.log('SMTP Server is ready to take our messages');
+    }
+  });
+
   const mailOptions = {
     from: `Contact Form <${process.env.BUSINESS_EMAIL_ADDRESS}>`,
     to: process.env.BUSINESS_EMAIL_ADDRESS,
@@ -28,9 +36,6 @@ const getInContactEmail = async (message) => {
       </p>
     `
   };
-
-  console.log('Sending email with options:', mailOptions);
-
 
   try {
     const info = await transporter.sendMail(mailOptions);

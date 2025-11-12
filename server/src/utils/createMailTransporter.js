@@ -29,16 +29,17 @@ const createMailTransporter = () => {
     console.log('Creating Gmail transporter (Port 465) for:', process.env.HOST_EMAIL_ADDRESS);
 
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true, // ← SSL, not STARTTLS
-        auth: {
-            user: process.env.HOST_EMAIL_ADDRESS,
-            pass: process.env.HOST_EMAIL_PASSWORD
-        },
-        connectionTimeout: 10000, // 10 seconds
-        greetingTimeout: 10000,
-        socketTimeout: 10000
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,  // Required for port 587
+    auth: {
+        user: process.env.HOST_EMAIL_ADDRESS,
+        pass: process.env.HOST_EMAIL_PASSWORD
+    },
+    tls: { rejectUnauthorized: false },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
     });
 
     return transporter;
