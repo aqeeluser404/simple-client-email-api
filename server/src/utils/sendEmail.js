@@ -3,15 +3,7 @@ const createMailTransporter = require('./createMailTransporter');
 const getInContactEmail = async (message) => {
     console.log('Inside getInContactEmail. Message:', message);
 
-  const transporter = createMailTransporter();
-
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error('SMTP Connection Failed:', error);
-    } else {
-      console.log('SMTP Server is ready to take our messages');
-    }
-  });
+  const transporter = await createMailTransporter();
 
   const mailOptions = {
     from: `Contact Form <${process.env.BUSINESS_EMAIL_ADDRESS}>`,
