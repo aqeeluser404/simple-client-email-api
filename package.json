@@ -1,0 +1,22 @@
+{
+  "name": "send-email-api",
+  "version": "1.0.0",
+  "description": "Quick api to send emails",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server/app.js",
+    "start": "node -r dotenv/config server/app.js"
+  },
+  "keywords": [],
+  "author": "Aqeel",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.2"
+  }
+}
