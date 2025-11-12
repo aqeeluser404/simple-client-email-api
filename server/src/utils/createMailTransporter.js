@@ -10,12 +10,12 @@ const createMailTransporter = () => {
     //     }
     // })
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587, // or 465
-        secure: false, // true for 465
+        host: 'in-v3.mailjet.com',
+        port: 587,
+        secure: false,
         auth: {
-            user: process.env.HOST_EMAIL_ADDRESS,
-            pass: process.env.HOST_EMAIL_PASSWORD
+            user: process.env.MAILJET_API_KEY,
+            pass: process.env.MAILJET_SECRET_KEY
         }
     });
     return transporter
