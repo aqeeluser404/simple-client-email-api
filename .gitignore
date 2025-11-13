@@ -1,3 +1,10 @@
 .env
 package-lock.json
 node_modules
+
+# ENV VARIABLES
+BUSINESS_EMAIL_ADDRESS=
+MAILJET_API_KEY=
+MAILJET_SECRET_KEY=
+HOST_LINK=
+PORT=
