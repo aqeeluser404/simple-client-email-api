@@ -24,16 +24,12 @@ const createMailTransporter = () => {
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true, // SSL
     auth: {
       user: process.env.HOST_EMAIL_ADDRESS,
       pass: process.env.HOST_EMAIL_PASSWORD
-    },
-    tls: { rejectUnauthorized: false },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 10000
+    }
   });
 
   // Optional verification (non-blocking callback)
