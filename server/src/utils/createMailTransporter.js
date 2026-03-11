@@ -23,21 +23,10 @@ const createMailTransporter = () => {
   console.log('Creating Gmail transporter (Port 587) for:', process.env.HOST_EMAIL_ADDRESS);
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // SSL
+    service: 'gmail',
     auth: {
       user: process.env.HOST_EMAIL_ADDRESS,
-      pass: process.env.HOST_EMAIL_PASSWORD
-    }
-  });
-
-  // Optional verification (non-blocking callback)
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error('SMTP CONNECTION FAILED:', error.message);
-    } else {
-      console.log('SMTP READY: Gmail connection verified');
+      pass: process.env.HOST_EMAIL_PASSWORD // must be a Gmail App Password
     }
   });
 
