@@ -1,9 +1,9 @@
 const createMailTransporter = require('./createMailTransporter');
 
 const getInContactEmail = async (message) => {
-    console.log('Inside getInContactEmail. Message:', message);
+  console.log('Inside getInContactEmail. Message:', message);
 
-  const transporter = await createMailTransporter();
+  const transporter = createMailTransporter(); // no await needed
 
   const mailOptions = {
     from: `Contact Form <${process.env.BUSINESS_EMAIL_ADDRESS}>`,

@@ -18,33 +18,33 @@
 
 const nodemailer = require('nodemailer');
 
-const createMailTransporter = async () => {
-    console.log('Creating Gmail transporter (Port 587) for:', process.env.HOST_EMAIL_ADDRESS);
+const createMailTransporter = () => {
+  console.log('Creating Gmail transporter (Port 587) for:', process.env.HOST_EMAIL_ADDRESS);
 
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.HOST_EMAIL_ADDRESS,
-            pass: process.env.HOST_EMAIL_PASSWORD
-        },
-        tls: { rejectUnauthorized: false },
-        connectionTimeout: 10000,
-        greetingTimeout: 10000,
-        socketTimeout: 10000
-    });
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.HOST_EMAIL_ADDRESS,
+      pass: process.env.HOST_EMAIL_PASSWORD
+    },
+    tls: { rejectUnauthorized: false },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000
+  });
 
-    // ← AWAIT the verification
-    try {
-        await transporter.verify();
-        console.log('SMTP READY: Gmail connection verified');
-    } catch (error) {
-        console.error('SMTP CONNECTION FAILED:', error.message);
-        throw error; // ← Let caller handle it
+  // Optional verification (non-blocking callback)
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error('SMTP CONNECTION FAILED:', error.message);
+    } else {
+      console.log('SMTP READY: Gmail connection verified');
     }
+  });
 
-    return transporter;
+  return transporter;
 };
 
 module.exports = createMailTransporter;
