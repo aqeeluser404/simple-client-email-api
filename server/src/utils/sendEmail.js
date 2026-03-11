@@ -1,4 +1,5 @@
 const createMailTransporter = require('./createMailTransporter');
+console.log('sendEmail.js loaded');
 
 const getInContactEmail = async (message) => {
   console.log('Inside getInContactEmail. Message:', message);
@@ -38,4 +39,4 @@ const getInContactEmail = async (message) => {
   }
 };
 
-module.exports = { getInContactEmail };
+module.exports = getInContactEmail;

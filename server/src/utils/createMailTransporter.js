@@ -17,6 +17,7 @@
 // module.exports = createMailTransporter
 
 const nodemailer = require('nodemailer');
+console.log('createMailTransporter.js loaded');
 
 const createMailTransporter = () => {
   console.log('Creating Gmail transporter (Port 587) for:', process.env.HOST_EMAIL_ADDRESS);

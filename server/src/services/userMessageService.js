@@ -1,4 +1,5 @@
-const { getInContactEmail } = require('../utils/sendEmail')
+const getInContactEmail = require('../utils/sendEmail');
+console.log('SendMessageService.js loaded');
 
 module.exports.SendMessageService = async (message) => {
     try {
